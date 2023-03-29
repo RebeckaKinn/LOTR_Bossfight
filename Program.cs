@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var characterList = new CharacterList();
+            var startGame = new GamePlay();
+            startGame.Start(characterList);
         }
     }
 }
