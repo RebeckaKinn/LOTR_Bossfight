@@ -16,7 +16,7 @@
             action.MenuChoices(character, ListOfCharacters);
         }
 
-        public void Flee(Character character, CharacterList ListOfCharacters)
+        public void GameOver(Character character, CharacterList ListOfCharacters)
         {
             Console.WriteLine($"{character.GetName()} feel the ground trumble and collapse under his feet,");
             var opponent = ListOfCharacters.GetOpponent();
@@ -24,6 +24,15 @@
             Console.WriteLine("\nPress any key to restart...");
             Console.ReadKey();
             StartUpLines(ListOfCharacters);
+        }
+
+        public void Victory(Character character, CharacterList ListOfCharacters)
+        {
+            var opponent = ListOfCharacters.GetOpponent();
+            Console.WriteLine($"Soon {character.GetName()} saw {opponent.GetName()} loose balance and got exited for a victory,");
+            Console.WriteLine("but...");
+            Thread.Sleep(3000);
+            GameOver(character, ListOfCharacters);
         }
 
     }

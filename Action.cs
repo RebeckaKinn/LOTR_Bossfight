@@ -21,7 +21,7 @@
                     gameplay.RechargeStamina(caracter, ListOfCharacters);
                     break;
                 case 3:
-                    gameplay.Flee(caracter, ListOfCharacters);
+                    gameplay.GameOver(caracter, ListOfCharacters);
                     break;
                 default:
                     MenuChoices(caracter, ListOfCharacters);
