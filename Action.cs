@@ -11,16 +11,16 @@
         public void MenuChoices(Character caracter, CharacterList ListOfCharacters)
         {
             var gameplay = new GamePlay();
-            var input = Convert.ToInt32(Console.ReadKey());
+            var input = Console.ReadLine();
             switch (input)
             {
-                case 1:
+                case "1":
                     gameplay.FightEnemy(caracter, ListOfCharacters);
                     break;
-                case 2:
+                case "2":
                     gameplay.RechargeStamina(caracter, ListOfCharacters);
                     break;
-                case 3:
+                case "3":
                     gameplay.GameOver(caracter, ListOfCharacters);
                     break;
                 default:

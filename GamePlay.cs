@@ -2,28 +2,36 @@
 {
     public class GamePlay
     {
+        Action action = new Action();
         public void StartUpLines(CharacterList ListOfCharacters)
         {
+            Console.Clear();
             Console.WriteLine($"Welcome to the battle between\n{ListOfCharacters.Character(0).GetName()} & {ListOfCharacters.Character(1).GetName()}");
-            Console.WriteLine($"You have one action each turn.");
-            var action = new Action();
+            Console.WriteLine($"You have one action each turn.\n");
             action.Menu();
-            Start(ListOfCharacters, action);
+            Start(ListOfCharacters);
         }
-        public void Start(CharacterList ListOfCharacters, Action action)
+        public void Start(CharacterList ListOfCharacters)
         {
+            var enemyGameplay = new EnemyGameplay();
             var character = ListOfCharacters.GetCharacter();
-            action.MenuChoices(character, ListOfCharacters);
+            if (character.GetStatus() == "Hero") action.MenuChoices(character, ListOfCharacters);
+            else enemyGameplay.EnemyActions(character, ListOfCharacters);
+
         }
 
         public void RechargeStamina(Character character, CharacterList ListOfCharacters)
         {
             character.Recharge(character);
+            character.ChangeTurn();
+            Start(ListOfCharacters);
         }
 
         public void FightEnemy(Character character, CharacterList ListOfCharacters)
         {
             character.Fight(ListOfCharacters);
+            character.ChangeTurn();
+            Start(ListOfCharacters);
         }
 
         public void GameOver(Character character, CharacterList ListOfCharacters)
