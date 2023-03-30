@@ -23,5 +23,28 @@
             return currentCharacter;
         }
 
+        public void ChangeTurn()
+        {
+            foreach (Character character in ListOfCharacters)
+            {
+                character.ChangeTurn();
+            }
+        }
+
+        public Character Character(int index)
+        {
+            return ListOfCharacters[index];
+        }
+
+        public Character GetOpponent()
+        {
+            var opponent = ListOfCharacters[0];
+            foreach (Character character in ListOfCharacters)
+            {
+                if (!character.IsTurn()) opponent = character;
+            }
+            return opponent;
+        }
+
     }
 }

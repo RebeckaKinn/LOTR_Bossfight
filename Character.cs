@@ -4,9 +4,9 @@
     {
         private string _name { get; }
         private string _status { get; }
-        private int _health { get; }
+        private int _health { get; set; }
         private int _strength { get; }
-        private int _stamina { get; }
+        private int _stamina { get; set; }
         public bool _turn { get; set; }
 
         public Character(string name, string status, int health, int strength, int stamina, bool turn)
@@ -49,6 +49,19 @@
             _turn = !_turn;
         }
 
+
+
+        public void Fight(CharacterList characterList)
+        {
+
+
+        }
+
+        public void Recharge(Character chosenCharacter)
+        {
+            if (chosenCharacter._status == "Hero") _stamina = 40;
+            else _stamina = 10;
+        }
 
 
     }

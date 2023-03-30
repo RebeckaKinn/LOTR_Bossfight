@@ -6,7 +6,7 @@
         {
             var characterList = new CharacterList();
             var startGame = new GamePlay();
-            startGame.Start(characterList);
+            startGame.StartUpLines(characterList);
         }
     }
 }
