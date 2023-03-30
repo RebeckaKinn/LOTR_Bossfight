@@ -16,6 +16,16 @@
             action.MenuChoices(character, ListOfCharacters);
         }
 
+        public void RechargeStamina(Character character, CharacterList ListOfCharacters)
+        {
+            character.Recharge(character);
+        }
+
+        public void FightEnemy(Character character, CharacterList ListOfCharacters)
+        {
+            character.Fight(ListOfCharacters);
+        }
+
         public void GameOver(Character character, CharacterList ListOfCharacters)
         {
             Console.WriteLine($"{character.GetName()} feel the ground trumble and collapse under his feet,");
