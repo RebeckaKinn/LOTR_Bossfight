@@ -31,10 +31,6 @@
         {
             return _health;
         }
-        public int GetStrength()
-        {
-            return _strength;
-        }
         public int GetStamina()
         {
             return _stamina;
@@ -66,7 +62,7 @@
         }
         public bool IsDead()
         {
-            if (_health >= 0) return true;
+            if (_health == 0) return true;
             else return false;
         }
     }

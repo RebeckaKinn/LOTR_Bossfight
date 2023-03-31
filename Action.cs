@@ -2,10 +2,11 @@
 {
     public class Action
     {
-        public void Menu()
+        public void Menu(Character caracter, CharacterList ListOfCharacters)
         {
             Console.WriteLine("What do you do?");
             Console.WriteLine("1 - Fight\n2 - Recharge\n3 - Flee");
+            MenuChoices(caracter, ListOfCharacters);
         }
 
         public void MenuChoices(Character caracter, CharacterList ListOfCharacters)

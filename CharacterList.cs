@@ -8,8 +8,8 @@
         {
             ListOfCharacters = new List<Character>
             {
-                new Character("Gandalf", "Hero", 100, 20, 40, false),
-                new Character("Balrog", "Enemy", 400, 20, 10, true)
+                new Character("Gandalf", "Hero", 100, 20, 40, true),
+                new Character("Balrog", "Enemy", 400, 20, 10, false)
             };
         }
 
@@ -49,7 +49,7 @@
         {
             foreach (Character character in ListOfCharacters)
             {
-                Console.WriteLine($"{character.GetName}\nHealth: {character.GetHealth}\nStamina: {character.GetStamina}\n\n");
+                Console.WriteLine($"{character.GetName()}\nHealth: {character.GetHealth()}\nStamina: {character.GetStamina()}\n\n");
             }
         }
     }
