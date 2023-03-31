@@ -13,11 +13,11 @@
         }
         public void Start(CharacterList ListOfCharacters)
         {
+
             var enemyGameplay = new EnemyGameplay();
             var character = ListOfCharacters.GetCharacter();
             if (character.GetStatus() == "Hero") action.MenuChoices(character, ListOfCharacters);
             else enemyGameplay.EnemyActions(character, ListOfCharacters);
-
         }
 
         public void RechargeStamina(Character character, CharacterList ListOfCharacters)
@@ -29,7 +29,9 @@
 
         public void FightEnemy(Character character, CharacterList ListOfCharacters)
         {
+            Console.WriteLine($"{character.GetName} swings his staff and shout some magic words.");
             character.Fight(ListOfCharacters);
+            CheckIfDead(character, ListOfCharacters);
             character.ChangeTurn();
             Start(ListOfCharacters);
         }
@@ -51,6 +53,13 @@
             Console.WriteLine("but...");
             Thread.Sleep(3000);
             GameOver(character, ListOfCharacters);
+        }
+
+        public void CheckIfDead(Character character, CharacterList ListOfCharacters)
+        {
+            var opponent = ListOfCharacters.GetOpponent();
+            if (character.IsDead()) Victory(character, ListOfCharacters);
+            if (opponent.IsDead()) GameOver(character, ListOfCharacters);
         }
 
     }

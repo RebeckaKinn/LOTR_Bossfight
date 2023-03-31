@@ -41,7 +41,6 @@
         }
         public bool IsTurn()
         {
-            ChangeTurn();
             return _turn;
         }
 
@@ -63,6 +62,12 @@
             if (chosenCharacter._status == "Hero") _stamina = 40;
             else _stamina = 10;
             Console.WriteLine($"Stamina recharched to {_stamina}.\n");
+        }
+
+        public bool IsDead()
+        {
+            if (_health >= 0) return true;
+            else return false;
         }
 
 
