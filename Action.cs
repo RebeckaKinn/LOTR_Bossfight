@@ -4,6 +4,7 @@
     {
         public void Menu(Character caracter, CharacterList ListOfCharacters)
         {
+            ListOfCharacters.GetStats();
             Console.WriteLine("What do you do?");
             Console.WriteLine("1 - Fight\n2 - Recharge\n3 - Flee");
             MenuChoices(caracter, ListOfCharacters);

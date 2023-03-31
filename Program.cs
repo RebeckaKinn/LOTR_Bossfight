@@ -4,9 +4,8 @@
     {
         static void Main(string[] args)
         {
-            var characterList = new CharacterList();
             var startGame = new GamePlay();
-            startGame.StartUpLines(characterList);
+            startGame.StartUpLines();
         }
     }
 }

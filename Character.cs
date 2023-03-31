@@ -45,13 +45,15 @@
         }
         public void Fight(CharacterList characterList)
         {
-            var opponent = characterList.GetOpponent();
-
-            var newHealth = opponent._health - _strength;
-            opponent._health = newHealth;
-            var newStamina = _stamina - 5;
-            _stamina = newStamina;
-            Console.WriteLine($"{opponent._name} lost {_strength} health.");
+            var opponent = characterList.GetCharacter();
+            if (opponent.GetName() != _name)
+            {
+                var newHealth = opponent._health - _strength;
+                opponent._health = newHealth;
+                var newStamina = _stamina - 5;
+                _stamina = newStamina;
+                Console.WriteLine($"{opponent.GetName()} lost {_strength} health.\n");
+            }
         }
 
         public void Recharge(Character chosenCharacter)

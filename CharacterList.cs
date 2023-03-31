@@ -9,7 +9,7 @@
             ListOfCharacters = new List<Character>
             {
                 new Character("Gandalf", "Hero", 100, 20, 40, true),
-                new Character("Balrog", "Enemy", 400, 20, 10, false)
+                new Character("Balrog", "Enemy", 400, 10, 10, false)
             };
         }
 
@@ -34,16 +34,6 @@
         public Character Character(int index)
         {
             return ListOfCharacters[index];
-        }
-
-        public Character GetOpponent()
-        {
-            var opponent = ListOfCharacters[0];
-            foreach (Character character in ListOfCharacters)
-            {
-                if (!character.IsTurn()) opponent = character;
-            }
-            return opponent;
         }
         public void GetStats()
         {
