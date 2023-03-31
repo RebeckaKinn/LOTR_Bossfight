@@ -43,18 +43,19 @@
         {
             return _turn;
         }
-
         public void ChangeTurn()
         {
             _turn = !_turn;
         }
-
-
-
         public void Fight(CharacterList characterList)
         {
+            var opponent = characterList.GetOpponent();
 
-
+            var newHealth = opponent._health - _strength;
+            opponent._health = newHealth;
+            var newStamina = _stamina - 5;
+            _stamina = newStamina;
+            Console.WriteLine($"{opponent._name} lost {_strength} health.");
         }
 
         public void Recharge(Character chosenCharacter)
@@ -63,13 +64,10 @@
             else _stamina = 10;
             Console.WriteLine($"Stamina recharched to {_stamina}.\n");
         }
-
         public bool IsDead()
         {
             if (_health >= 0) return true;
             else return false;
         }
-
-
     }
 }

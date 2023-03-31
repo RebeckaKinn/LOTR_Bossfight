@@ -45,5 +45,12 @@
             }
             return opponent;
         }
+        public void GetStats()
+        {
+            foreach (Character character in ListOfCharacters)
+            {
+                Console.WriteLine($"{character.GetName}\nHealth: {character.GetHealth}\nStamina: {character.GetStamina}\n\n");
+            }
+        }
     }
 }

@@ -2,18 +2,19 @@
 {
     public class GamePlay
     {
-        Action action = new Action();
+
         public void StartUpLines(CharacterList ListOfCharacters)
         {
-            Console.Clear();
             Console.WriteLine($"Welcome to the battle between\n{ListOfCharacters.Character(0).GetName()} & {ListOfCharacters.Character(1).GetName()}");
             Console.WriteLine($"You have one action each turn.\n");
+            var action = new Action();
             action.Menu();
             Start(ListOfCharacters);
         }
         public void Start(CharacterList ListOfCharacters)
         {
-
+            var action = new Action();
+            ListOfCharacters.GetStats();
             var enemyGameplay = new EnemyGameplay();
             var character = ListOfCharacters.GetCharacter();
             if (character.GetStatus() == "Hero") action.MenuChoices(character, ListOfCharacters);
@@ -29,11 +30,20 @@
 
         public void FightEnemy(Character character, CharacterList ListOfCharacters)
         {
-            Console.WriteLine($"{character.GetName} swings his staff and shout some magic words.");
-            character.Fight(ListOfCharacters);
-            CheckIfDead(character, ListOfCharacters);
-            character.ChangeTurn();
-            Start(ListOfCharacters);
+            var action = new Action();
+            if (character.GetStamina() >= 0)
+            {
+                Console.WriteLine("You don't have enough stamina to fight! You must recharge first...");
+                action.MenuChoices(character, ListOfCharacters);
+            }
+            else
+            {
+                Console.WriteLine($"{character.GetName} swings his staff and shout some magic words.");
+                character.Fight(ListOfCharacters);
+                CheckIfDead(character, ListOfCharacters);
+                character.ChangeTurn();
+                Start(ListOfCharacters);
+            }
         }
 
         public void GameOver(Character character, CharacterList ListOfCharacters)

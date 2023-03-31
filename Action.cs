@@ -12,6 +12,7 @@
         {
             var gameplay = new GamePlay();
             var input = Console.ReadLine();
+            Console.Clear();
             switch (input)
             {
                 case "1":
