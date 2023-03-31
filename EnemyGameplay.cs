@@ -1,6 +1,6 @@
 ﻿namespace Bossfight
 {
-    internal class EnemyGameplay
+    public class EnemyGameplay
     {
         public void EnemyActions(Character character, CharacterList ListOfCharacters)
         {
@@ -20,6 +20,7 @@
                 startGame.CheckIfDead(character, ListOfCharacters);
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
+                Console.Clear();
                 startGame.Start(ListOfCharacters);
             }
         }
