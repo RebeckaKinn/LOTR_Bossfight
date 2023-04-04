@@ -10,7 +10,7 @@
             MenuChoices(caracter, ListOfCharacters);
         }
 
-        public void MenuChoices(Character caracter, CharacterList ListOfCharacters)
+        public void MenuChoices(Character character, CharacterList ListOfCharacters)
         {
             var gameplay = new GamePlay();
             var input = Console.ReadLine();
@@ -18,16 +18,17 @@
             switch (input)
             {
                 case "1":
-                    gameplay.FightEnemy(caracter, ListOfCharacters);
+                    gameplay.FightEnemy(character, ListOfCharacters);
                     break;
                 case "2":
-                    gameplay.RechargeStamina(caracter, ListOfCharacters);
+                    gameplay.RechargeStamina(character, ListOfCharacters);
                     break;
                 case "3":
-                    gameplay.GameOver(caracter, ListOfCharacters);
+                    Console.WriteLine($"'Fly, you fools!' {character.GetName()} said.");
+                    gameplay.GameOver(character, ListOfCharacters);
                     break;
                 default:
-                    MenuChoices(caracter, ListOfCharacters);
+                    MenuChoices(character, ListOfCharacters);
                     break;
             }
         }
