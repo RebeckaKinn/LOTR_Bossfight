@@ -8,7 +8,7 @@
         {
             ListOfCharacters = new List<Character>
             {
-                new Character("Gandalf", "Hero", 100, 20, 40, true),
+                new Character("Gandalf", "Hero", 100, 25, 40, true),
                 new Character("Balrog", "Enemy", 400, 10, 10, false)
             };
         }

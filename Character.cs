@@ -5,7 +5,7 @@
         private string _name { get; }
         private string _status { get; }
         private int _health { get; set; }
-        private int _strength { get; }
+        private int _strength { get; set; }
         private int _stamina { get; set; }
         public bool _turn { get; set; }
 
@@ -46,14 +46,18 @@
         public void Fight(CharacterList characterList)
         {
             var opponent = characterList.GetCharacter();
-            if (opponent.GetName() != _name)
+            if (_status == "Enemy")
             {
-                var newHealth = opponent._health - _strength;
-                opponent._health = newHealth;
-                var newStamina = _stamina - 5;
-                _stamina = newStamina;
-                Console.WriteLine($"{opponent.GetName()} lost {_strength} health.\n");
+                Random number = new Random();
+                _strength = number.Next(0, 30);
             }
+
+            var newHealth = opponent._health - _strength;
+            opponent._health = newHealth;
+            var newStamina = _stamina - 5;
+            _stamina = newStamina;
+            Console.WriteLine($"{opponent.GetName()} lost {_strength} health.\n");
+
         }
 
         public void Recharge(Character chosenCharacter)
@@ -64,7 +68,7 @@
         }
         public bool IsDead()
         {
-            if (_health == 0) return true;
+            if (_health <= 0) return true;
             else return false;
         }
     }
