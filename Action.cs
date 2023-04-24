@@ -6,12 +6,13 @@
         {
             ListOfCharacters.GetStats();
             Console.WriteLine("What do you do?");
-            Console.WriteLine("1 - Fight\n2 - Recharge\n3 - Flee");
+            Console.WriteLine("1 - Fight\n2 - Use Potion\n3 - Flee");
             MenuChoices(caracter, ListOfCharacters);
         }
 
         public void MenuChoices(Character character, CharacterList ListOfCharacters)
         {
+            var item = new ItemList();
             var gameplay = new GamePlay();
             var input = Console.ReadLine();
             Console.Clear();
@@ -21,7 +22,7 @@
                     gameplay.FightEnemy(character, ListOfCharacters);
                     break;
                 case "2":
-                    gameplay.RechargeStamina(character, ListOfCharacters);
+                    ItemMenu(character, item);
                     break;
                 case "3":
                     Console.WriteLine($"'Fly, you fools!' {character.GetName()} said.");
@@ -31,6 +32,13 @@
                     MenuChoices(character, ListOfCharacters);
                     break;
             }
+        }
+        public void ItemMenu(Character character, ItemList item)
+        {
+            Console.WriteLine("Which potion would you like to drink?");
+            item.ScrollThroughItems();
+            var input = Console.ReadLine();
+            item.UseItem(input, character);
         }
     }
 }

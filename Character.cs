@@ -68,8 +68,19 @@
         }
         public bool IsDead()
         {
-            if (_health <= 0) return true;
-            else return false;
+            return _health <= 0 ? true : false;
+        }
+
+        public void UseHealthPotion()
+        {
+            _health = 100;
+            Console.WriteLine($"{_name} drank the potion and his health went back up to {_health}!");
+        }
+
+        public void UseStaminaPotion()
+        {
+            _stamina = 40;
+            Console.WriteLine($"{_name} drank the potion and his stamina went back up to {_stamina}!");
         }
     }
 }

@@ -12,12 +12,13 @@
         }
         public void Start(CharacterList ListOfCharacters)
         {
+            var item = new ItemList();
             var action = new Action();
             var character = ListOfCharacters.GetCharacter();
             ListOfCharacters.ChangeTurn();
             var enemyGameplay = new EnemyGameplay();
             Console.WriteLine($"\nIt is now {character.GetName()}'s turn.");
-            if (character.GetStatus() == "Hero") action.Menu(character, ListOfCharacters);
+            if (character.GetStatus() == "Hero") action.Menu(character, ListOfCharacters, item);
             else enemyGameplay.EnemyActions(character, ListOfCharacters);
         }
 
