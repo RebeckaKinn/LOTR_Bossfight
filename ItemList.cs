@@ -2,36 +2,39 @@
 {
     public class ItemList
     {
-        public List<string> Items { get; set; }
+        public List<Potion> Items { get; set; }
+        public int Id { get; }
         public ItemList()
         {
-            Items = new List<string>
+            Items = new List<Potion>
             {
-                new string("Health Potion"),
-                new string("Stamina Potion"),
-                new string("Strength Potion"),
+                new Potion("Health Potion", 1),
+                new Potion("Stamina Potion", 2),
+                new Potion("Strength Potion", 3),
             };
         }
-        public string GetItem(int index)
+
+        public bool ConfirmID(int input)
         {
-            return Items[index];
+            return Items.Any(p => p.Id == input);
         }
 
-        public void UseItem(string chosenItem, Character character)
+        public bool IsItemInInventory(int index)
         {
-            if (GetItem(0) == chosenItem) character.UseHealthPotion();
-            if (GetItem(1) == chosenItem) character.UseStaminaPotion();
-            if (GetItem(2) == chosenItem) character.UseStrengthPotion();
+            for (int i = 1; i < Items.Count; i++)
+            {
+                if (i == index) return true;
+                break;
+            }
+            return false;
         }
-
         public void ScrollThroughItems()
         {
             for (int i = 0; i < Items.Count; i++)
             {
                 int number = i + 1;
-                Console.WriteLine($"{number} - {Items[i]}");
+                Console.WriteLine($"{number} - {Items[i].Name}");
             };
-            Console.ReadLine();
         }
     }
 }

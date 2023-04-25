@@ -12,21 +12,20 @@
         }
         public void Start(CharacterList ListOfCharacters)
         {
-            var item = new ItemList();
             var action = new Action();
             var character = ListOfCharacters.GetCharacter();
             ListOfCharacters.ChangeTurn();
             var enemyGameplay = new EnemyGameplay();
             Console.WriteLine($"\nIt is now {character.GetName()}'s turn.");
-            if (character.GetStatus() == "Hero") action.Menu(character, ListOfCharacters, item);
+            if (character.GetStatus() == "Hero") action.Menu(character, ListOfCharacters);
             else enemyGameplay.EnemyActions(character, ListOfCharacters);
         }
 
-        public void RechargeStamina(Character character, CharacterList ListOfCharacters)
-        {
-            character.Recharge(character);
-            Start(ListOfCharacters);
-        }
+        //public void RechargeStamina(Character character, CharacterList ListOfCharacters)
+        //{
+        //    character.Recharge(character);
+        //    Start(ListOfCharacters);
+        //}
 
         public void FightEnemy(Character character, CharacterList ListOfCharacters)
         {

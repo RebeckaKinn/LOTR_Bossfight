@@ -82,5 +82,20 @@
             _stamina = 40;
             Console.WriteLine($"{_name} drank the potion and his stamina went back up to {_stamina}!");
         }
+        public void UseStrengthPotion(CharacterList characterList)
+        {
+
+            _strength = 50;
+            Console.WriteLine($"{_name}s arms starts bubbling, and felt his strength grow.");
+            Console.WriteLine($"Strenght has doubled to {_strength}!");
+            Fight(characterList);
+            _strength = 25;
+        }
+        public void UsePotion(int id, CharacterList characterList)
+        {
+            if (id == 1) UseHealthPotion();
+            if (id == 2) UseStaminaPotion();
+            if (id == 3) UseStrengthPotion(characterList);
+        }
     }
 }
