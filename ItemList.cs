@@ -3,15 +3,34 @@
     public class ItemList
     {
         public List<Potion> Items { get; set; }
-        public int Id { get; }
+        public List<BackPackItems> Backpack { get; set; }
         public ItemList()
         {
             Items = new List<Potion>
             {
-                new Potion("Health Potion", 1),
-                new Potion("Stamina Potion", 2),
-                new Potion("Strength Potion", 3),
+                new Potion("Health Potion", 1, 100),
+                new Potion("Stamina Potion", 2, 2),
+                new Potion("Strength Potion", 3, 2),
             };
+        }
+
+        public void AddToBackpack(Potion potion, int amount)
+        {
+            if (Backpack.Any(p => p.Potion == potion))
+            {
+                var potionToAdd = Backpack.FirstOrDefault(p => p.Potion == potion);
+                potionToAdd.AddItems(amount);
+            }
+            else Backpack.Add(new BackPackItems(potion, amount));
+        }
+
+        public void RemoveFromBackPack(BackPackItems potion, int amount)
+        {
+            if (potion.ShowAmount() == 0)
+            {
+                Console.WriteLine("You don't have any more of theese!");
+            }
+            else potion.UseAnItem(amount, Backpack, potion);
         }
 
         public bool ConfirmID(int input)

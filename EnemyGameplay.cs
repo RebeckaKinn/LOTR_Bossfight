@@ -8,7 +8,7 @@
             if (character.GetStamina() == 0)
             {
                 Console.WriteLine($"{character.GetName()} is really tired and need a moment to catch his breath");
-                character.Recharge(character);
+                character.Recharge();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
                 startGame.Start(ListOfCharacters);

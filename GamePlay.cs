@@ -21,11 +21,7 @@
             else enemyGameplay.EnemyActions(character, ListOfCharacters);
         }
 
-        //public void RechargeStamina(Character character, CharacterList ListOfCharacters)
-        //{
-        //    character.Recharge(character);
-        //    Start(ListOfCharacters);
-        //}
+
 
         public void FightEnemy(Character character, CharacterList ListOfCharacters)
         {

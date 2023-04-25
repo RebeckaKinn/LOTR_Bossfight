@@ -60,10 +60,9 @@
 
         }
 
-        public void Recharge(Character chosenCharacter)
+        public void Recharge()
         {
-            if (chosenCharacter._status == "Hero") _stamina = 40;
-            else _stamina = 10;
+            _stamina = 10;
             Console.WriteLine($"Stamina recharched to {_stamina}.\n");
         }
         public bool IsDead()
