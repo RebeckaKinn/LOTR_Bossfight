@@ -12,11 +12,5 @@
             Id = id;
             Value = value;
         }
-
-        public void Use(int id, Character character)
-        {
-
-        }
-
     }
 }
