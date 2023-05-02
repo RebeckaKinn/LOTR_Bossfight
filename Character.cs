@@ -7,7 +7,7 @@
         private int _health { get; set; }
         private int _strength { get; set; }
         private int _stamina { get; set; }
-        public bool _turn { get; set; }
+        public bool _turn;
 
         public Character(string name, string status, int health, int strength, int stamina, bool turn)
         {
