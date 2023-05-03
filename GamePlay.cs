@@ -5,65 +5,61 @@
 
         public void StartUpLines()
         {
-            var characterList = new CharacterList();
-            Console.WriteLine($"Welcome to the battle between\n{characterList.Character(0).GetName()} & {characterList.Character(1).GetName()}");
+            var enemy = new Enemy();
+            var hero = new Hero();
+            Console.WriteLine($"Welcome to the battle between\n{hero.Name} & {enemy.Name}");
             Console.WriteLine($"You have one action each turn.\n");
-            Start(characterList);
+            Start(hero, enemy);
         }
-        public void Start(CharacterList ListOfCharacters)
+        public void Start(Hero hero, Enemy enemy)
         {
-            var action = new Action();
-            var character = ListOfCharacters.GetCharacter();
-            ListOfCharacters.ChangeTurn();
-            var enemyGameplay = new EnemyGameplay();
-            Console.WriteLine($"\nIt is now {character.GetName()}'s turn.");
-            if (character.GetStatus() == "Hero") action.Menu(character, ListOfCharacters);
-            else enemyGameplay.EnemyActions(character, ListOfCharacters);
-        }
-
-
-
-        public void FightEnemy(Character character, CharacterList ListOfCharacters)
-        {
-            var action = new Action();
-            if (character.GetStamina() == 0)
+            var heroAction = new HeroAction();
+            var enemyAction = new EnemyAction();
+            var item = new ItemList();
+            while (!CheckIfDead(hero, enemy))
             {
-                Console.WriteLine("You don't have enough stamina to fight! You must recharge first...");
-                action.Menu(character, ListOfCharacters);
+                heroAction.Play(hero, enemy);
+                CheckIfDead(hero, enemy);
+                enemyAction.Play(hero, enemy);
+                ItemDrop(hero, item);
             }
-            else
-            {
-                Console.WriteLine($"{character.GetName()} swings his staff and shout some magic words.");
-                character.Fight(ListOfCharacters);
-                CheckIfDead(character, ListOfCharacters);
-                Start(ListOfCharacters);
-            }
+            GameEnd(hero, enemy);
         }
 
-        public void GameOver(Character character, CharacterList ListOfCharacters)
+        public void ItemDrop(Hero hero, ItemList item)
         {
-            Console.WriteLine($"{character.GetName()} feel the ground trumble and collapse under his feet,");
-            var opponent = ListOfCharacters.GetCharacter();
-            Console.WriteLine($"and soon both him and {opponent.GetName()} fall down into the abyss.\n----GAME OVER----");
+            var rnd = new Random();
+            int chance = rnd.Next(0, 8);
+            if (chance > 4)
+            {
+                hero.AddItemToBackPack(item.DropItem(rnd));
+            }
+            return;
+        }
+        public void GameOver(Hero hero, Enemy enemy)
+        {
+            Console.WriteLine($"{hero.Name} feel the ground trumble and collapse under his feet,");
+            Console.WriteLine($"and soon both him and {enemy.Name} fall down into the abyss.\n----GAME OVER----");
             Console.WriteLine("\nPress any key to restart...");
             Console.ReadKey();
             StartUpLines();
         }
-
-        public void Victory(Character character, CharacterList ListOfCharacters)
+        public void Victory(Hero hero, Enemy enemy)
         {
-            var opponent = ListOfCharacters.GetCharacter();
-            Console.WriteLine($"Soon {character.GetName()} saw {opponent.GetName()} loose balance and got exited for a victory,");
+            Console.WriteLine($"Soon {hero.Name} saw {enemy.Name} loose balance and got exited for a victory,");
             Console.WriteLine("but...");
             Thread.Sleep(3000);
-            GameOver(character, ListOfCharacters);
+            GameOver(hero, enemy);
         }
-
-        public void CheckIfDead(Character character, CharacterList ListOfCharacters)
+        public void GameEnd(Hero hero, Enemy enemy)
         {
-            var opponent = ListOfCharacters.GetCharacter();
-            if (character.IsDead()) Victory(character, ListOfCharacters);
-            if (opponent.IsDead()) GameOver(character, ListOfCharacters);
+            if (hero.IsDead()) Victory(hero, enemy);
+            if (enemy.IsDead()) GameOver(hero, enemy);
+        }
+        public bool CheckIfDead(Hero hero, Enemy enemy)
+        {
+            if (hero.IsDead() || enemy.IsDead()) return true;
+            return false;
         }
 
     }

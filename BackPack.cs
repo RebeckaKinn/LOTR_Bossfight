@@ -1,19 +1,19 @@
 ﻿namespace Bossfight
 {
-    public class BackPackItems
+    public class BackPack
     {
-        public Potion Potion { get; }
+        public object Item { get; }
         public int Amount { get; set; }
-        public BackPackItems(Potion newPotion, int amount)
+        public BackPack(object newItem, int amount)
         {
-            Potion = newPotion;
+            Item = newItem;
             Amount = amount;
         }
         public void AddItems(int addItems)
         {
             Amount += addItems;
         }
-        public void UseAnItem(int remove, List<BackPackItems> Backpack, BackPackItems item)
+        public void UseAnItem(int remove, List<BackPack> Backpack, BackPack item)
         {
             Amount -= remove;
             if (Amount == 0) Backpack.Remove(item);
