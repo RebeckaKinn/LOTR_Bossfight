@@ -15,11 +15,6 @@
             _strength = strength;
             _stamina = stamina;
         }
-
-        public Hero()
-        {
-            new Hero("Gandalf", 100, 25, 40);
-        }
         public int GetStamina()
         {
             return _stamina;
@@ -50,6 +45,11 @@
 
         public void AddItemToBackPack(Item item)
         {
+            if (Backpack.Any(p => p.Item == item))
+            {
+                var existingItem = Backpack.Where(p => p.Item == item).FirstOrDefault();
+                existingItem.AddItems();
+            }
             var newItem = new BackPack(item, 1);
             Backpack.Add(newItem);
         }
@@ -62,6 +62,10 @@
             var backpackMatch = Backpack.FirstOrDefault(p => p.Item.Id == id);
             var usedItem = backpackMatch?.Item;
             return usedItem;
+        }
+        public BackPack FindBackPackItem(Item currentItem)
+        {
+            return Backpack.FirstOrDefault(p => p.Item == currentItem);
         }
 
         public void ViewBackpack()
@@ -85,6 +89,12 @@
                 break;
             }
             return false;
+        }
+
+        public void UseItem(int remove, BackPack item)
+        {
+            item.Amount -= remove;
+            if (item.Amount == 0) Backpack.Remove(item);
         }
     }
 }

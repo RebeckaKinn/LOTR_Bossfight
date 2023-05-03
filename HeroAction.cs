@@ -40,6 +40,12 @@
         }
         public void ItemMenu(Hero hero, Enemy enemy)
         {
+            if (hero.Backpack == null)
+            {
+                Console.WriteLine("Your backpack is empty!");
+                FightEnemy(hero, enemy);
+                return;
+            }
             Console.WriteLine("Backpack:");
             hero.ViewBackpack();
             var input = Console.ReadLine();
@@ -47,6 +53,7 @@
             if (hero.ConfirmID(Convert.ToInt32(input)))
             {
                 hero.FindPotionFronBackPack(Convert.ToInt32(input)).Use(hero, enemy);
+                hero.UseItem(1, hero.FindBackPackItem(hero.FindPotionFronBackPack(Convert.ToInt32(input))));
             }
             else
             {

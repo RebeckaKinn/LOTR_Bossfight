@@ -9,18 +9,11 @@
             Item = newItem;
             Amount = amount;
         }
-        public void AddItems(int addItems)
+        public void AddItems(int addItems = 1)
         {
             Amount += addItems;
         }
-        public void UseAnItem(int remove, List<BackPack> Backpack, BackPack item)
-        {
-            Amount -= remove;
-            if (Amount == 0) Backpack.Remove(item);
-        }
-        public int ShowAmount()
-        {
-            return Amount;
-        }
+
+
     }
 }

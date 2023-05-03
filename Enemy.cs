@@ -13,10 +13,6 @@
             _strength = strength;
             _stamina = stamina;
         }
-        public Enemy()
-        {
-            new Enemy("Balrog", 400, 10, 10);
-        }
         public int GetHealth()
         {
             return Health;

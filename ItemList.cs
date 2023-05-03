@@ -16,7 +16,7 @@
         public Item DropItem(Random rnd)
         {
             int index = rnd.Next(Items.Count);
-            Console.WriteLine("A potion dropped! You put it in your backpack.");
+            Console.WriteLine("An item dropped! You put it in your backpack.");
             return Items[index];
         }
 
