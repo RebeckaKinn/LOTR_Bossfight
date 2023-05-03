@@ -48,7 +48,7 @@
             Console.WriteLine($"{Name}\nHealth: {Health}\nStamina: {GetStamina()}\n\n");
         }
 
-        public void AddItemToBackPack(object item)
+        public void AddItemToBackPack(Item item)
         {
             var newItem = new BackPack(item, 1);
             Backpack.Add(newItem);
@@ -57,33 +57,34 @@
 
 
 
-
+        public Item FindPotionFronBackPack(int id)
+        {
+            var backpackMatch = Backpack.FirstOrDefault(p => p.Item.Id == id);
+            var usedItem = backpackMatch?.Item;
+            return usedItem;
+        }
 
         public void ViewBackpack()
         {
-
+            for (int i = 0; i < Backpack.Count; i++)
+            {
+                int number = i + 1;
+                Console.WriteLine($"{number} - {Backpack[i].Item.Name} ({Backpack[i].Amount})");
+            };
         }
         public bool ConfirmID(int input)
         {
-            return Backpack.Any(p => p.Id == input);
+            return Backpack.Any(p => p.Item.Id == input);
         }
 
         public bool IsItemInInventory(int index)
         {
-            for (int i = 1; i < Items.Count; i++)
+            for (int i = 1; i < Backpack.Count; i++)
             {
                 if (i == index) return true;
                 break;
             }
             return false;
-        }
-        public void ScrollThroughItems()
-        {
-            for (int i = 0; i < Items.Count; i++)
-            {
-                int number = i + 1;
-                Console.WriteLine($"{number} - {Items[i].Name}");
-            };
         }
     }
 }

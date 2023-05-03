@@ -2,9 +2,9 @@
 {
     public class BackPack
     {
-        public object Item { get; }
+        public Item Item { get; }
         public int Amount { get; set; }
-        public BackPack(object newItem, int amount)
+        public BackPack(Item newItem, int amount)
         {
             Item = newItem;
             Amount = amount;

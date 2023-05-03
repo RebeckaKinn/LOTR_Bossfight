@@ -24,7 +24,7 @@
             switch (input)
             {
                 case "1":
-                    hero.Fight(enemy);
+                    FightEnemy(hero, enemy);
                     break;
                 case "2":
                     ItemMenu(hero, enemy);
@@ -46,19 +46,15 @@
             if (input == "back") Menu(hero, enemy);
             if (hero.ConfirmID(Convert.ToInt32(input)))
             {
-                character.UsePotion(Convert.ToInt32(input), ListOfCharacters);
-                gameplay.Start(ListOfCharacters);
+                hero.FindPotionFronBackPack(Convert.ToInt32(input)).Use(hero, enemy);
             }
             else
             {
-                Console.WriteLine("No potion or wrong command...");
+                Console.WriteLine("No item or wrong command...");
                 Thread.Sleep(1000);
                 Menu(hero, enemy);
             };
         }
-
-
-
 
         public void FightEnemy(Hero hero, Enemy enemy)
         {
@@ -72,8 +68,6 @@
             {
                 Console.WriteLine($"{hero.Name} swings his staff and shout some magic words.");
                 hero.Fight(enemy);
-                CheckIfDead(hero, enemy);
-                Start(hero, enemy);
             }
         }
     }
