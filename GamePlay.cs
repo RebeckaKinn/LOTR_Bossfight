@@ -19,8 +19,10 @@
             while (!CheckIfDead(hero, enemy))
             {
                 heroAction.Play(hero, enemy);
+
                 CheckIfDead(hero, enemy);
                 enemyAction.Play(hero, enemy);
+
                 ItemDrop(hero, item);
             }
             GameEnd(hero, enemy);
@@ -29,10 +31,11 @@
         public void ItemDrop(Hero hero, ItemList item)
         {
             var rnd = new Random();
-            int chance = rnd.Next(0, 8);
-            if (chance > 4)
+            int chance = rnd.Next(0, 5);
+            if (chance > 1)
             {
-                hero.AddItemToBackPack(item.DropItem(rnd));
+                hero.AddItemToBackPack(item.DropItem());
+                Console.WriteLine("Backpack count is " + hero.Backpack.Count);
             }
             return;
         }

@@ -13,10 +13,11 @@
             };
         }
 
-        public Item DropItem(Random rnd)
+        public Item DropItem()
         {
+            var rnd = new Random();
             int index = rnd.Next(Items.Count);
-            Console.WriteLine("An item dropped! You put it in your backpack.");
+            Console.WriteLine($"\n***An {Items[index].Name} dropped! You put it in your backpack.***");
             return Items[index];
         }
 

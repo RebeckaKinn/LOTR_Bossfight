@@ -6,7 +6,7 @@
         public int Health { get; set; }
         private int _strength { get; set; }
         private int _stamina { get; set; }
-        public List<BackPack> Backpack { get; set; }
+        public List<BackPack>? Backpack { get; set; }
 
         public Hero(string name, int health, int strength, int stamina)
         {
@@ -14,6 +14,7 @@
             Health = health;
             _strength = strength;
             _stamina = stamina;
+            Backpack = new List<BackPack>();
         }
         public int GetStamina()
         {
@@ -47,21 +48,24 @@
         {
             if (Backpack.Any(p => p.Item == item))
             {
-                var existingItem = Backpack.Where(p => p.Item == item).FirstOrDefault();
-                existingItem.AddItems();
+                var backpack = Backpack.FirstOrDefault(p => p.Item == item);
+                backpack.AddItems();
             }
-            var newItem = new BackPack(item, 1);
-            Backpack.Add(newItem);
+            else Backpack.Add(new BackPack(item, 1));
         }
 
-
-
-
-        public Item FindPotionFronBackPack(int id)
+        //wrong, not use id, use index. Fix where ID is used in this context. 
+        public Item FindItemFronBackPack(int input)
         {
-            var backpackMatch = Backpack.FirstOrDefault(p => p.Item.Id == id);
-            var usedItem = backpackMatch?.Item;
-            return usedItem;
+            return Backpack[input - 1].Item;
+            //for (int i = 1; i < Backpack?.Count; i++)
+            //{
+            //    if (i == input)
+            //    {
+            //        return Backpack[i]?.Item;
+            //    }
+            //}
+            //return Backpack[input].Item;
         }
         public BackPack FindBackPackItem(Item currentItem)
         {
@@ -76,17 +80,11 @@
                 Console.WriteLine($"{number} - {Backpack[i].Item.Name} ({Backpack[i].Amount})");
             };
         }
-        public bool ConfirmID(int input)
+        public bool ConfirmExistance(int input)
         {
-            return Backpack.Any(p => p.Item.Id == input);
-        }
-
-        public bool IsItemInInventory(int index)
-        {
-            for (int i = 1; i < Backpack.Count; i++)
+            for (int i = 1; i < Backpack?.Count; i++)
             {
-                if (i == index) return true;
-                break;
+                if (i == input) return true;
             }
             return false;
         }

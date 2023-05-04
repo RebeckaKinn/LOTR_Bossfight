@@ -2,7 +2,7 @@
 {
     public class BackPack
     {
-        public Item Item { get; }
+        public Item Item;
         public int Amount { get; set; }
         public BackPack(Item newItem, int amount)
         {

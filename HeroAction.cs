@@ -49,18 +49,12 @@
             Console.WriteLine("Backpack:");
             hero.ViewBackpack();
             var input = Console.ReadLine();
-            if (input == "back") Menu(hero, enemy);
-            if (hero.ConfirmID(Convert.ToInt32(input)))
+            if (hero.ConfirmExistance(Convert.ToInt32(input)))
             {
-                hero.FindPotionFronBackPack(Convert.ToInt32(input)).Use(hero, enemy);
-                hero.UseItem(1, hero.FindBackPackItem(hero.FindPotionFronBackPack(Convert.ToInt32(input))));
+                hero.FindItemFronBackPack(Convert.ToInt32(input)).Use(hero, enemy);
+                hero.UseItem(1, hero.FindBackPackItem(hero.FindItemFronBackPack(Convert.ToInt32(input))));
             }
-            else
-            {
-                Console.WriteLine("No item or wrong command...");
-                Thread.Sleep(1000);
-                Menu(hero, enemy);
-            };
+            else Menu(hero, enemy);
         }
 
         public void FightEnemy(Hero hero, Enemy enemy)
