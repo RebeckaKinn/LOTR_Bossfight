@@ -4,7 +4,7 @@
     {
         public void StartUpLines()
         {
-            var enemy = new Enemy("Balrog", 400, new Random(), 10);
+            var enemy = new Enemy("Balrog", 400, 10, 10);
             var hero = new Hero("Gandalf", 100, 15, 40);
             Console.WriteLine($"Welcome to the battle between\n{hero.Name} & {enemy.Name}");
             Console.WriteLine($"You have one action each turn.\n");

@@ -1,50 +1,23 @@
 ﻿namespace Bossfight
 {
-    public class Hero
+    public class Hero : GameCharacter
     {
-        public string Name { get; }
-        public int Health { get; set; }
-        private int _strength { get; set; }
-        private int _stamina { get; set; }
         public List<BackPack>? Backpack { get; set; }
 
-        public Hero(string name, int health, int strength, int stamina)
+        public Hero(string name, int health, int strength, int stamina) : base(name, health, strength, stamina)
         {
-            Name = name;
-            Health = health;
-            _strength = strength;
-            _stamina = stamina;
             Backpack = new List<BackPack>();
         }
-        public int GetStamina()
-        {
-            return _stamina;
-        }
-        public int GetStrength()
-        {
-            return _strength;
-        }
-        public void ChangeStamina(int newStamina)
-        {
-            _stamina = newStamina;
-        }
+
         public void Fight(Enemy enemy, int potionUse = 1)
         {
-            int currentStrength = _strength * potionUse;
+            int currentStrength = GetStrength() * potionUse;
             enemy.Health = enemy.Health - currentStrength;
-            _stamina = _stamina - 5;
+            ChangeStamina(GetStamina() - 5);
             Console.WriteLine($"{enemy.Name} lost {currentStrength} health.\n");
         }
-        public bool IsDead()
-        {
-            return Health <= 0 ? true : false;
-        }
-        public void GetStats()
-        {
-            Console.WriteLine($"{Name}\nHealth: {Health}\nStamina: {GetStamina()}\n\n");
-        }
-        public void AddItemToBackPack(Item item)
 
+        public void AddItemToBackPack(Item item)
         {
             if (Backpack.Any(p => p.Item == item))
             {
@@ -79,7 +52,6 @@
                     int index = i + 1;
                     if (Convert.ToInt32(index) == input) return true;
                 }
-
             }
             return false;
         }
