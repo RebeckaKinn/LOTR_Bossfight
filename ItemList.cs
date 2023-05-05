@@ -8,11 +8,10 @@
             Items = new List<Item>
             {
                 new HealingPotion("Health Potion", 1, "Healing", 100),
-                new StaminaPotion("Stamina Potion", 2, "Endurance", 2),
+                new StaminaPotion("Stamina Potion", 2, "Endurance", 40),
                 new StrengthPotion("Strength Potion", 3, "Power", 2),
             };
         }
-
         public Item DropItem()
         {
             var rnd = new Random();
@@ -20,7 +19,6 @@
             Console.WriteLine($"\n***An {Items[index].Name} dropped! You put it in your backpack.***");
             return Items[index];
         }
-
         public Item GetItem(int index)
         {
             return Items[index];

@@ -9,17 +9,20 @@
             {
                 Console.WriteLine($"{enemy.Name} is really tired and need a moment to catch his breath");
                 enemy.Recharge();
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
+                EndEnemyTurn();
             }
             else
             {
                 Console.WriteLine($"{hero.Name} growls loudely and shouts a firey breath at you!");
                 enemy.Fight(hero);
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-                Console.Clear();
+                EndEnemyTurn();
             }
+        }
+        public void EndEnemyTurn()
+        {
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

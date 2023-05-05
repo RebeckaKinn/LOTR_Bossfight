@@ -6,7 +6,6 @@
         {
 
         }
-
         public override void Use(Hero hero, Enemy enemy)
         {
             hero.Health = Value;

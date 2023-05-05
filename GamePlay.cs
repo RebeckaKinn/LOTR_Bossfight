@@ -2,11 +2,10 @@
 {
     public class GamePlay
     {
-
         public void StartUpLines()
         {
-            var enemy = new Enemy("Balrog", 400, 10, 10);
-            var hero = new Hero("Gandalf", 100, 25, 40);
+            var enemy = new Enemy("Balrog", 400, new Random(), 10);
+            var hero = new Hero("Gandalf", 100, 15, 40);
             Console.WriteLine($"Welcome to the battle between\n{hero.Name} & {enemy.Name}");
             Console.WriteLine($"You have one action each turn.\n");
             Start(hero, enemy);
@@ -19,23 +18,19 @@
             while (!CheckIfDead(hero, enemy))
             {
                 heroAction.Play(hero, enemy);
-
                 CheckIfDead(hero, enemy);
                 enemyAction.Play(hero, enemy);
-
                 ItemDrop(hero, item);
             }
             GameEnd(hero, enemy);
         }
-
         public void ItemDrop(Hero hero, ItemList item)
         {
             var rnd = new Random();
-            int chance = rnd.Next(0, 5);
-            if (chance > 1)
+            int chance = rnd.Next(0, 10);
+            if (chance > 4)
             {
                 hero.AddItemToBackPack(item.DropItem());
-                Console.WriteLine("Backpack count is " + hero.Backpack.Count);
             }
             return;
         }
@@ -64,6 +59,5 @@
             if (hero.IsDead() || enemy.IsDead()) return true;
             return false;
         }
-
     }
 }

@@ -28,12 +28,12 @@
         {
             _stamina = newStamina;
         }
-        public void Fight(Enemy enemy)
+        public void Fight(Enemy enemy, int potionUse = 1)
         {
-            enemy.Health = enemy.Health - _strength;
+            int currentStrength = _strength * potionUse;
+            enemy.Health = enemy.Health - currentStrength;
             _stamina = _stamina - 5;
-            Console.WriteLine($"{enemy.Name} lost {_strength} health.\n");
-
+            Console.WriteLine($"{enemy.Name} lost {currentStrength} health.\n");
         }
         public bool IsDead()
         {
@@ -43,8 +43,8 @@
         {
             Console.WriteLine($"{Name}\nHealth: {Health}\nStamina: {GetStamina()}\n\n");
         }
-
         public void AddItemToBackPack(Item item)
+
         {
             if (Backpack.Any(p => p.Item == item))
             {
@@ -53,25 +53,14 @@
             }
             else Backpack.Add(new BackPack(item, 1));
         }
-
-        //wrong, not use id, use index. Fix where ID is used in this context. 
-        public Item FindItemFronBackPack(int input)
+        public Item GetItemFromBackPack(int input)
         {
             return Backpack[input - 1].Item;
-            //for (int i = 1; i < Backpack?.Count; i++)
-            //{
-            //    if (i == input)
-            //    {
-            //        return Backpack[i]?.Item;
-            //    }
-            //}
-            //return Backpack[input].Item;
         }
         public BackPack FindBackPackItem(Item currentItem)
         {
             return Backpack.FirstOrDefault(p => p.Item == currentItem);
         }
-
         public void ViewBackpack()
         {
             for (int i = 0; i < Backpack.Count; i++)
@@ -79,16 +68,21 @@
                 int number = i + 1;
                 Console.WriteLine($"{number} - {Backpack[i].Item.Name} ({Backpack[i].Amount})");
             };
+            Console.WriteLine("Write the number of the potion you would like to use\nor anything else to return to menu.\n");
         }
         public bool ConfirmExistance(int input)
         {
-            for (int i = 1; i < Backpack?.Count; i++)
+            if (Backpack != null)
             {
-                if (i == input) return true;
+                for (int i = 0; i < Backpack.Count; i++)
+                {
+                    int index = i + 1;
+                    if (Convert.ToInt32(index) == input) return true;
+                }
+
             }
             return false;
         }
-
         public void UseItem(int remove, BackPack item)
         {
             item.Amount -= remove;

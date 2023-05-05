@@ -15,7 +15,6 @@
             Console.WriteLine("What do you do?");
             Console.WriteLine("1 - Fight\n2 - View Backpack\n3 - Flee");
         }
-
         public void MenuChoices(Hero hero, Enemy enemy)
         {
             var gameplay = new GamePlay();
@@ -40,23 +39,27 @@
         }
         public void ItemMenu(Hero hero, Enemy enemy)
         {
-            if (hero.Backpack == null)
+            if (hero.Backpack.Count == 0)
             {
-                Console.WriteLine("Your backpack is empty!");
+                Console.WriteLine("Your backpack is empty!\n");
                 FightEnemy(hero, enemy);
                 return;
             }
             Console.WriteLine("Backpack:");
             hero.ViewBackpack();
             var input = Console.ReadLine();
-            if (hero.ConfirmExistance(Convert.ToInt32(input)))
+            if (int.TryParse(input, out _) && hero.ConfirmExistance(Convert.ToInt32(input)))
             {
-                hero.FindItemFronBackPack(Convert.ToInt32(input)).Use(hero, enemy);
-                hero.UseItem(1, hero.FindBackPackItem(hero.FindItemFronBackPack(Convert.ToInt32(input))));
+                var itemInUse = hero.GetItemFromBackPack(Convert.ToInt32(input));
+                itemInUse.Use(hero, enemy);
+                hero.UseItem(1, hero.FindBackPackItem(hero.GetItemFromBackPack(Convert.ToInt32(input))));
             }
-            else Menu(hero, enemy);
+            else
+            {
+                Menu(hero, enemy);
+                MenuChoices(hero, enemy);
+            }
         }
-
         public void FightEnemy(Hero hero, Enemy enemy)
         {
             var action = new HeroAction();

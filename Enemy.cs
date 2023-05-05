@@ -4,39 +4,25 @@
     {
         public string Name { get; }
         public int Health { get; set; }
-        private int _strength { get; set; }
+        private Random _strength { get; set; }
         private int _stamina { get; set; }
-        public Enemy(string name, int health, int strength, int stamina)
+        public Enemy(string name, int health, Random strength, int stamina)
         {
             Name = name;
             Health = health;
             _strength = strength;
             _stamina = stamina;
         }
-        public int GetHealth()
-        {
-            return Health;
-        }
         public int GetStamina()
         {
             return _stamina;
         }
-        public int GetStrength()
-        {
-            return _strength;
-        }
-
-        public void ChangeHealth(int newHealth)
-        {
-            Health = newHealth;
-        }
         public void Fight(Hero hero)
         {
-            Random number = new Random();
-            _strength = number.Next(0, 30);
-            hero.Health = hero.Health - _strength;
+            int currentStrength = _strength.Next(0, 30);
+            hero.Health = hero.Health - currentStrength;
             _stamina = _stamina - 5;
-            Console.WriteLine($"{hero.Name} lost {_strength} health.\n");
+            Console.WriteLine($"{hero.Name} lost {currentStrength} health.\n");
         }
         public void Recharge()
         {

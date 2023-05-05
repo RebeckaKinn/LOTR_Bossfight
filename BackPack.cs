@@ -13,7 +13,5 @@
         {
             Amount += addItems;
         }
-
-
     }
 }

@@ -14,12 +14,10 @@
             Value = value;
             Id = id;
         }
-
         public virtual void Use(Hero hero, Enemy enemy)
         {
             Console.WriteLine("No use available...");
             Thread.Sleep(1000);
         }
-
     }
 }
