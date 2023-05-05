@@ -62,11 +62,11 @@
         }
         public void FightEnemy(Hero hero, Enemy enemy)
         {
-            var action = new HeroAction();
             if (hero.GetStamina() == 0)
             {
                 Console.WriteLine("You don't have enough stamina to fight! You must recharge first...");
-                action.Menu(hero, enemy);
+                Menu(hero, enemy);
+                MenuChoices(hero, enemy);
             }
             else
             {
