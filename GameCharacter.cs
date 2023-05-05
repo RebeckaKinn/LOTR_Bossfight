@@ -3,14 +3,14 @@
     public class GameCharacter
     {
         public string Name { get; }
-        public int Health { get; set; }
+        private int _health { get; set; }
         private int _strength { get; set; }
         private int _stamina { get; set; }
 
         public GameCharacter(string name, int health, int strength, int stamina)
         {
             Name = name;
-            Health = health;
+            _health = health;
             _strength = strength;
             _stamina = stamina;
         }
@@ -22,16 +22,25 @@
         {
             return _strength;
         }
+        public int GetHealth()
+        {
+            return _health;
+        }
+
+        public void UpdateHealth(int newHealth)
+        {
+            _health = newHealth;
+        }
 
         public void ChangeStamina(int newStamina)
         {
             _stamina = newStamina;
         }
 
-        public bool IsDead() => Health <= 0;
+        public bool IsDead() => _health <= 0;
         public virtual void GetStats()
         {
-            Console.WriteLine($"{Name}\nHealth: {Health}\nStamina: {_stamina}\n\n");
+            Console.WriteLine($"{Name}\nHealth: {_health}\nStamina: {_stamina}\n\n");
         }
     }
 }

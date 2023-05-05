@@ -13,5 +13,10 @@
         {
             Amount += addItems;
         }
+
+        public void ShowItems(int index)
+        {
+            Console.WriteLine($"{index} - {Item.GetName()} ({Amount})");
+        }
     }
 }

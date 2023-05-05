@@ -10,7 +10,7 @@
         {
             Random strength = new Random();
             int currentStrength = strength.Next(0, 30);
-            hero.Health = hero.Health - currentStrength;
+            hero.UpdateHealth(hero.GetHealth() - currentStrength);
             ChangeStamina(GetStamina() - 5);
             Console.WriteLine($"{hero.Name} lost {currentStrength} health.\n");
         }

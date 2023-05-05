@@ -12,7 +12,7 @@
         public void Fight(Enemy enemy, int potionUse = 1)
         {
             int currentStrength = GetStrength() * potionUse;
-            enemy.Health = enemy.Health - currentStrength;
+            enemy.UpdateHealth(enemy.GetHealth() - currentStrength);
             ChangeStamina(GetStamina() - 5);
             Console.WriteLine($"{enemy.Name} lost {currentStrength} health.\n");
         }
@@ -36,12 +36,13 @@
         }
         public void ViewBackpack()
         {
-            for (int i = 0; i < Backpack.Count; i++)
+            int placement = 1;
+            foreach (BackPack item in Backpack)
             {
-                int number = i + 1;
-                Console.WriteLine($"{number} - {Backpack[i].Item.Name} ({Backpack[i].Amount})");
-            };
-            Console.WriteLine("Write the number of the potion you would like to use\nor anything else to return to menu.\n");
+                item.ShowItems(placement);
+                placement++;
+            }
+            Console.WriteLine("Write a valid number to use...\n");
         }
         public bool ConfirmExistance(int input)
         {

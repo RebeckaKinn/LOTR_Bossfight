@@ -2,22 +2,29 @@
 {
     public class Item
     {
-        public string Name;
+        private string _name;
         public string Type;
-        public int Value;
-        public int Id;
+        private int _value;
 
-        public Item(string name, int id, string type, int value)
+        public Item(string name, string type, int value)
         {
-            Name = name;
+            _name = name;
             Type = type;
-            Value = value;
-            Id = id;
+            _value = value;
         }
         public virtual void Use(Hero hero, Enemy enemy)
         {
             Console.WriteLine("No use available...");
             Thread.Sleep(1000);
+        }
+
+        public string GetName()
+        {
+            return _name;
+        }
+        public int GetValue()
+        {
+            return _value;
         }
     }
 }
